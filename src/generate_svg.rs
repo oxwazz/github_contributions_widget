@@ -4,7 +4,7 @@ use base64::Engine;
 use chrono::{DateTime, Utc};
 use std::time::Duration;
 
-const DEFAULT_HEIGHT_WRAPPER: f32 = 18.144964;
+const DEFAULT_HEIGHT_WRAPPER: f32 = 18.145;
 const DEFAULT_POSITION_FIRST_ITEM: f32 = -28.313;
 const DEFAULT_RANGE_POSITION_NEXT_ITEM: f32 = 18.113465;
 
@@ -72,7 +72,7 @@ pub async fn generate_svg(username: &str, contributions: Vec<PullRequest>) -> St
 
     let mut svg = format!(
         r###"
-<svg width="525.449" height="{}" viewBox="0 0 139.025 {}" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+<svg width="139.025mm" height="{}mm" viewBox="0 0 139.025 {}" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
   <title>{} Open-Source Contributions</title>
   <defs>
     <linearGradient id="d">
@@ -117,8 +117,8 @@ pub async fn generate_svg(username: &str, contributions: Vec<PullRequest>) -> St
     </g>
   </g>
 "###,
-        total_contributions as f32 * 274.32,
-        total_contributions as f32 * 72.581,
+        (total_contributions as f32 + 1.0) * DEFAULT_HEIGHT_WRAPPER,
+        (total_contributions as f32 + 1.0) * DEFAULT_HEIGHT_WRAPPER,
         uppercase_first_letter(username),
         uppercase_first_letter(username),
         get_formatted_date_now()
@@ -172,7 +172,9 @@ pub async fn generate_svg(username: &str, contributions: Vec<PullRequest>) -> St
             contribution.title,                    // PR Title
             contribution.repository.nameWithOwner, // owner and project owner
             parse_number_compact(contribution.repository.stargazerCount), // project stargazers
-            get_photo_base64_from_url(contribution.repository.owner.avatarUrl.as_str()).await.to_string()
+            get_photo_base64_from_url(contribution.repository.owner.avatarUrl.as_str())
+                .await
+                .to_string()
         );
         svg = format!("{svg}{g}");
     }
@@ -227,8 +229,9 @@ pub async fn generate_svg(username: &str, contributions: Vec<PullRequest>) -> St
             contribution.title,                    // PR Title
             contribution.repository.nameWithOwner, // owner and project owner
             parse_number_compact(contribution.repository.stargazerCount), // project stargazers
-            get_photo_base64_from_url(contribution.repository.owner.avatarUrl.as_str()).await.to_string()
-
+            get_photo_base64_from_url(contribution.repository.owner.avatarUrl.as_str())
+                .await
+                .to_string()
         );
         svg = format!("{svg}{g}");
     }
