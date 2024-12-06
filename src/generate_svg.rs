@@ -1,7 +1,7 @@
 use crate::get_oss_contributions::PullRequest;
 use base64::engine::general_purpose;
 use base64::Engine;
-use chrono::{DateTime, TimeZone, Utc};
+use chrono::{DateTime, Utc};
 use std::time::Duration;
 
 const DEFAULT_HEIGHT_WRAPPER: f32 = 18.144964;
