@@ -17,7 +17,10 @@ fn uppercase_first_letter(word: &str) -> String {
 }
 
 fn parse_time_ago(timestamp: &str) -> String {
-    let date1: DateTime<Utc> = timestamp.parse().unwrap_or_default();
+    let date1: DateTime<Utc> = match timestamp.parse() {
+        Err(_) => return String::new(),
+        Ok(v) => v,
+    };
     let date2 = Utc::now();
     let seconds_diff = (date2 - date1).num_seconds();
     timeago::Formatter::new().convert(Duration::from_secs(seconds_diff as u64))
@@ -137,7 +140,7 @@ pub async fn generate_svg(username: &str, contributions: Vec<PullRequest>) -> St
     </g>
     <g transform="matrix(1.00001 0 0 1.00155 -25.695 -34.045)">
       <g transform="matrix(.99999 0 0 .99845 24.999 34.017)">
-        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:end;writing-mode:lr-tb;direction:ltr;text-anchor:end;fill:#59636e;fill-opacity:1;stroke:none;stroke-width:0.326001;stroke-linecap:butt;stroke-linejoin:bevel;stroke-opacity:1;paint-order:normal" x="147.984" y="38.793"><tspan style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:end;text-anchor:end;fill:#59636e;fill-opacity:1;stroke:none;stroke-width:0.326" x="147.984" y="38.793">3 days ago</tspan></text>
+        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:end;writing-mode:lr-tb;direction:ltr;text-anchor:end;fill:#59636e;fill-opacity:1;stroke:none;stroke-width:0.326001;stroke-linecap:butt;stroke-linejoin:bevel;stroke-opacity:1;paint-order:normal" x="147.984" y="38.793"><tspan style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:end;text-anchor:end;fill:#59636e;fill-opacity:1;stroke:none;stroke-width:0.326" x="147.984" y="38.793">{}</tspan></text>
         <path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zM5 3.25a.75.75 0 1 0 0 .005z" style="display:{};fill:#8250df" transform="matrix(.42534 0 0 .42534 20.159 33.985)"/>
         <path d="M3.25 1A2.25 2.25 0 0 1 4 5.372v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.251 2.251 0 0 1 3.25 1Zm9.5 5.5a.75.75 0 0 1 .75.75v3.378a2.251 2.251 0 1 1-1.5 0V7.25a.75.75 0 0 1 .75-.75Zm-2.03-5.273a.75.75 0 0 1 1.06 0l.97.97.97-.97a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.97.97.97.97a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-.97-.97-.97.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l.97-.97-.97-.97a.75.75 0 0 1 0-1.06zM2.5 3.25a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0zM3.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zm9.5 0a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5z" style="display:{};fill:#d1242f" transform="matrix(.42534 0 0 .42534 20.37 33.985)"/>
         <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354zM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0z" style="display:{};fill:#1a7f37" transform="matrix(.42534 0 0 .42534 20.266 34.069)"/>
@@ -154,6 +157,7 @@ pub async fn generate_svg(username: &str, contributions: Vec<PullRequest>) -> St
   </g>
             "##,
             DEFAULT_POSITION_FIRST_ITEM + ((count as f32 + 1.0) * DEFAULT_RANGE_POSITION_NEXT_ITEM), // tes
+            parse_time_ago(&contribution.createdAt),
             if contribution.state == "MERGED" {
                 "inline"
             } else {
@@ -174,7 +178,6 @@ pub async fn generate_svg(username: &str, contributions: Vec<PullRequest>) -> St
             parse_number_compact(contribution.repository.stargazerCount), // project stargazers
             get_photo_base64_from_url(contribution.repository.owner.avatarUrl.as_str())
                 .await
-                .to_string()
         );
         svg = format!("{svg}{g}");
     }
