@@ -4,11 +4,9 @@ mod get_oss_contributions;
 use crate::generate_svg::generate_svg;
 use crate::get_oss_contributions::{get_oss_contributions, Data};
 use chrono::{TimeZone, Utc};
-use reqwest::Url;
-use std::convert::From;
 use std::time::Duration;
 use worker::{
-    console_debug, console_error, console_log, console_warn, Context, Env, Request, Response,
+    console_log, Context, Env, Request, Response,
     Result, Router,
 };
 use worker_macros::event;
