@@ -28,6 +28,8 @@ Congratulation! 🎉 You are now showing your GitHub contributions to your profi
 
 ## FAQ
 
+1. why the widget is not updated / always cached? that causing my latest contributions not listed
+
 > GitHub has image caching by default, this causing your latest contributions not reflect on this widget.
 > to solve this issue you can manually update the image using query params like `?refresh-cache=1`
 > or you can auto update the `?refresh-cache=` automatically using GitHub Action
