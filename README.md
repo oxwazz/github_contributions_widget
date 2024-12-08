@@ -21,7 +21,7 @@
 ![GitHub Contributions Widget](https://github-contributions-widget.oxwazz.com/oxwazz)
 ```
 
-**Output**
+**Output** <br/>
 ![GitHub Contributions Widget](https://github-contributions-widget.oxwazz.com/oxwazz)
 
 Congratulation! 🎉 You are now showing your GitHub contributions to your profile!
