@@ -15,7 +15,7 @@
 Easily showcase your GitHub contributions to your profile! Follow the steps below:
 
 1. Copy the code snippet below and paste it into your README.md file
-2. Replace `oxwazz` with your GitHub username (case-sensitive)
+2. Replace `/oxwazz` with your GitHub username (case-sensitive)
 
 ```markdown
 ![GitHub Contributions Widget](https://github-contributions-widget.oxwazz.com/oxwazz)
