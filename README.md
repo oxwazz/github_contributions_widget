@@ -12,10 +12,10 @@
 
 ## Usage
 
-1. Easily showcase your GitHub contributions to your profile! Follow the steps below:
+Easily showcase your GitHub contributions to your profile! Follow the steps below:
 
-2. Copy the code snippet below and paste it into your README.md file.
-   Replace `oxwazz` with your LeetCode username (case-insensitive).
+1. Copy the code snippet below and paste it into your README.md file.
+2. Replace `oxwazz` with your GitHub username (case-insensitive).
 
 ```markdown
 ![GitHub Contributions Widget](https://github-contributions-widget.oxwazz.com/oxwazz)
