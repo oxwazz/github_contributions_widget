@@ -22,7 +22,7 @@
 ```
 
 **Output** <br/>
-![GitHub Contributions Widget](https://github-contributions-widget.oxwazz.com/oxwazz)
+![GitHub Contributions Widget](https://github-contributions-widget.oxwazz.com/oxwazz?refresh-cache=1)
 
 Congratulation! 🎉 You are now showing your GitHub contributions to your profile!
 
