@@ -2,6 +2,9 @@ use reqwest::header::USER_AGENT;
 use reqwest::{Client, Response};
 use serde::{Deserialize, Serialize};
 use serde_json::json;
+use worker::{
+  console_log
+};
 
 #[derive(Deserialize, Serialize, Debug)]
 pub struct Data {
@@ -49,9 +52,11 @@ pub struct Owner {
 
 pub async fn get_oss_contributions(
     username: &str,
+    states: Option<&str>,
     github_token: &str,
 ) -> reqwest::Result<Response> {
     let client = Client::new();
+    console_log!("[OXWAZZ-LOG] Params: {:?}", &states);
 
     let query = r"
       query ($username: String!) {
@@ -77,11 +82,37 @@ pub async fn get_oss_contributions(
         }
       }
     ";
+
+    let query_with_states = r"
+      query ($username: String!, $states: [PullRequestState!]) {
+        user(login: $username) {
+          name
+          login
+          avatarUrl
+          pullRequests(first: 100, orderBy: { field: CREATED_AT, direction: DESC }, states: $states) {
+            nodes {
+              title
+              url
+              state
+              createdAt
+              repository {
+                nameWithOwner
+                stargazerCount
+                owner {
+                  avatarUrl
+                }
+              }
+            }
+          }
+        }
+      }
+    ";
     
     let body = json!({
-        "query": query,
+        "query": if states.is_some() { query_with_states } else { query },
         "variables": {
-            "username": username
+            "username": username,
+            "states": states.map(|s| s.trim_matches('"'))
         }
     });
 
