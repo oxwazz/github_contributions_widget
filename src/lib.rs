@@ -68,10 +68,17 @@ pub async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
                 .map(|(_, value)| value.to_string())
                 .unwrap_or_default();
 
+            // Get query ?states=
+            let query_states = url
+                .query_pairs()
+                .find(|(key, _)| key == "states")
+                .map(|(_, value)| value.to_string());
+
             console_log!("[OXWAZZ-LOG] Requested path: {}", &username);
             console_log!("[OXWAZZ-LOG] Requested query: {}", &query_username);
+            console_log!("[OXWAZZ-LOG] Requested query: {:?}", &query_states);
 
-            match get_oss_contributions(username, github_token).await {
+            match get_oss_contributions(username, query_states.as_deref(), github_token).await {
                 Err(err) => {
                     console_log!("[OXWAZZ-ERR] Request failed: {}", err);
                     Response::from_html(err.to_string())
