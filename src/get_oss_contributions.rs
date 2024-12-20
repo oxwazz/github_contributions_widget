@@ -2,9 +2,7 @@ use reqwest::header::USER_AGENT;
 use reqwest::{Client, Response};
 use serde::{Deserialize, Serialize};
 use serde_json::json;
-use worker::{
-  console_log
-};
+use worker::console_log;
 
 #[derive(Deserialize, Serialize, Debug)]
 pub struct Data {
@@ -107,7 +105,7 @@ pub async fn get_oss_contributions(
         }
       }
     ";
-    
+
     let body = json!({
         "query": if states.is_some() { query_with_states } else { query },
         "variables": {
