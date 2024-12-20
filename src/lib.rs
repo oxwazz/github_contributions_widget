@@ -9,7 +9,6 @@ use crate::generate_svg_empty_state::generate_svg_empty_state;
 use crate::generate_svg_error_state::generate_svg_error_state;
 use crate::get_oss_contributions::{get_oss_contributions, Data};
 use worker::{console_log, Context, Env, Request, Response, Result, Router};
-use worker::js_sys::Reflect::set;
 use worker_macros::event;
 
 fn return_error_state(username: &str) -> Result<Response> {
@@ -64,7 +63,7 @@ pub async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
             Ok(response)
         })
         .get_async("/test-svg", |_, _| async move {
-            let svg = include_bytes!("../assets/snapshot/v0.1.2.svg");
+            let svg = include_bytes!("../assets/snapshot/v0.1.3.svg");
             let mut response = Response::from_bytes(svg.to_vec())?;
             response
                 .headers_mut()
