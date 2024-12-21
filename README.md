@@ -19,6 +19,7 @@ Easily showcase your GitHub contributions to your profile! Follow the steps belo
 1. [Optional] To filter by PR status Add `?states="STATUS"` change status with `MERGED | OPEN | CLOSED`.
 1. [Optional] Custom title add `?title=` to customize the widget title.
 1. [Optional] Custom total showing contribution add `?show-max=`, min=1 max=10.
+1. [Optional] Custom theme add `?theme=`, with `light | dark`.
 
 ```markdown
 ![GitHub Contributions Widget](https://github-contributions-widget.oxwazz.com/oxwazz)
