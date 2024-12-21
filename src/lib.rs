@@ -84,14 +84,49 @@ pub async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
             let username: Vec<&str> = url.path_segments().map(|c| c.collect()).unwrap_or_default();
             let username = username.first().unwrap_or(&"");
 
-            // Get query ?states=
+            // Get query ?states=MERGED|CLOSED|OPEN
             let query_states = url
                 .query_pairs()
                 .find(|(key, _)| key == "states")
                 .map(|(_, value)| value.to_string());
 
+            // Get query ?show-max=3
+            let query_show_max = url
+                .query_pairs()
+                .find(|(key, _)| key == "show-max")
+                .map(|(_, value)| value.to_string());
+
+            // Get query ?title=hellow
+            let query_title = url
+                .query_pairs()
+                .find(|(key, _)| key == "title")
+                .map(|(_, value)| value.to_string());
+
+            // Get query ?theme=light|dark
+            let query_theme = url
+                .query_pairs()
+                .find(|(key, _)| key == "theme")
+                .map(|(_, value)| value.to_string());
+
             console_log!("[OXWAZZ-LOG] Requested path: {}", username);
             console_log!("[OXWAZZ-LOG] Requested query: {:?}", query_states);
+            console_log!("[OXWAZZ-LOG] Requested query: {:?}", query_show_max);
+            console_log!("[OXWAZZ-LOG] Requested query: {:?}", query_title);
+            console_log!("[OXWAZZ-LOG] Requested query: {:?}", query_theme);
+
+            // TODO verify query_show_max
+            // add default = 3
+            // must number
+            // max 10
+            // min 1
+
+            // TODO verify query_title
+            // add default = ??
+            // if null
+
+            // TODO verify query_theme
+            // add default = light
+            // if theme not found
 
             match get_oss_contributions(username, query_states.as_deref(), github_token).await {
                 Err(err) => {
@@ -119,7 +154,12 @@ pub async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
                             return return_empty_state(username);
                         }
 
-                        let svg = generate_svg(username, res.data.user.pullRequests.nodes).await;
+                        let svg = generate_svg(
+                            username,
+                            res.data.user.pullRequests.nodes,
+                            query_title.as_deref(),
+                        )
+                        .await;
                         // early return generate_svg has error inside / return empty string
                         if svg.is_empty() {
                             return return_empty_state(username);
