@@ -120,10 +120,6 @@ pub async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
             // max 10
             // min 1
 
-            // TODO verify query_title
-            // add default = ??
-            // if null
-
             // TODO verify query_theme
             // add default = light
             // if theme not found
@@ -158,6 +154,7 @@ pub async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
                             username,
                             res.data.user.pullRequests.nodes,
                             query_title.as_deref(),
+                            query_show_max.as_deref(),
                         )
                         .await;
                         // early return generate_svg has error inside / return empty string

@@ -13,11 +13,9 @@ pub(crate) async fn generate_svg(
     username: &str,
     contributions: Vec<PullRequest>,
     custom_title: Option<&str>,
+    custom_show_max: Option<&str>,
 ) -> String {
-    let total_contributions = match contributions.len() {
-        len if len > 0 => len, // If length is not empty, return the length as a string
-        _ => 0,                // If the list is empty, return an empty string
-    };
+    let total_contributions = get_show_max(&contributions, custom_show_max);
 
     format!(
         r##"
@@ -132,11 +130,47 @@ pub(crate) async fn generate_svg(
         (total_contributions as f32 + 1.0) * DEFAULT_HEIGHT_WRAPPER,
         (total_contributions as f32 + 1.0) * DEFAULT_HEIGHT_WRAPPER,
         get_title(username, custom_title),
-        get_animation(total_contributions).await,
+        get_animation(total_contributions as usize).await,
         get_title(username, custom_title),
         get_formatted_date_now(),
-        get_content(contributions, total_contributions).await
+        get_content(contributions, total_contributions as usize).await
     )
+}
+
+const DEFAULT_TOTAL_SHOW: usize = 3;
+const MAX_TOTAL_SHOW: usize = 10;
+fn get_show_max(contributions: &[PullRequest], custom_show_max: Option<&str>) -> u16 {
+    // check custom_max value is not empty
+    let custom_total_show = if let Some(custom_max) = custom_show_max {
+        // check custom_max is numeric value
+        match custom_max.parse::<u16>() {
+            // when error set default value = DEFAULT_TOTAL_SHOW
+            Err(_) => DEFAULT_TOTAL_SHOW as u16,
+            Ok(v) => {
+                // when <=0 set default value
+                if v.le(&0) {
+                    return 1;
+                }
+                v
+            }
+        }
+        // when error set default value = DEFAULT_TOTAL_SHOW
+    } else {
+        DEFAULT_TOTAL_SHOW as u16
+    };
+
+    if custom_total_show.le(&(contributions.len() as u16))
+        && custom_total_show.le(&(MAX_TOTAL_SHOW as u16))
+    {
+        return custom_total_show;
+    }
+
+    if MAX_TOTAL_SHOW.le(&contributions.len()) {
+        return MAX_TOTAL_SHOW as u16;
+    }
+
+    // if MAX_TOTAL_SHOW > contributions.len()
+    contributions.len() as u16
 }
 
 fn get_title(username: &str, custom_title: Option<&str>) -> String {
