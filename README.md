@@ -15,8 +15,10 @@
 Easily showcase your GitHub contributions to your profile! Follow the steps below:
 
 1. Copy the code snippet below and paste it into your `README.md` file.
-2. Replace `/oxwazz` with your GitHub username (case-insensitive).
-3. To filter by PR status Add `?states="STATUS"` change status with `MERGED | OPEN | CLOSED`.
+1. Replace `/oxwazz` with your GitHub username (case-insensitive).
+1. [Optional] To filter by PR status Add `?states="STATUS"` change status with `MERGED | OPEN | CLOSED`.
+1. [Optional] Custom title add `?title=` to customize the widget title.
+1. [Optional] Custom total showing contribution add `?show-max=`, min=1 max=10.
 
 ```markdown
 ![GitHub Contributions Widget](https://github-contributions-widget.oxwazz.com/oxwazz)
