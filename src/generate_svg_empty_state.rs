@@ -1,6 +1,7 @@
+use crate::generate_svg_error_state::get_theme;
 use crate::utils::{get_formatted_date_now, uppercase_first_letter};
 
-pub(crate) fn generate_svg_empty_state(username: &str) -> String {
+pub(crate) fn generate_svg_empty_state(username: &str, custom_theme: Option<&str>) -> String {
     format!(
         r##"
 <svg
@@ -39,6 +40,8 @@ pub(crate) fn generate_svg_empty_state(username: &str) -> String {
           font-style: normal;
           format("woff2");
       }}
+      
+      {}
 
       * {{
         font-family:"Noto Sans"
@@ -89,8 +92,8 @@ pub(crate) fn generate_svg_empty_state(username: &str) -> String {
   <g>
     <path
       id="title-bg"
-      fill="#f6f8fa"
-      stroke="#d1d9e0"
+      fill="var(--wrapper-title-background)"
+      stroke="var(--wrapper-border)"
       stroke-width="0.2"
       stroke-linecap="square"
       d="M0 2 Q 0 0, 2 0 H 108 Q 110 0, 110 2 V 15 H 0 L 0 2"
@@ -99,13 +102,13 @@ pub(crate) fn generate_svg_empty_state(username: &str) -> String {
       <text
         y="8"
         x="5"
-        fill="#1f2328"
+        fill="var(--text)"
         style="font-weight: 700; font-size: 3.8px"
         opacity="0.9"
       >
         {} Open-Source Contributions
       </text>
-      <text y="12" x="5" fill="#1f2328" opacity="0.5" style="font-size: 2.2px">
+      <text y="12" x="5" fill="var(--text)" opacity="0.5" style="font-size: 2.2px">
         - Updated at {} -
       </text>
     </g>
@@ -115,8 +118,8 @@ pub(crate) fn generate_svg_empty_state(username: &str) -> String {
   <g transform="translate(0, 14.8)">
     <path
       id="content-1-bg"
-      fill="#f6f8fa"
-      stroke="#d1d9e0"
+      fill="var(--wrapper-content-background)"
+      stroke="var(--wrapper-border)"
       stroke-width="0.2"
       stroke-linecap="square"
       d="M0 0 H 110 V 42.5 Q 110 44.5, 108 44.5 H 2 Q 0 44.5, 0 42.5  L 0 0"
@@ -124,7 +127,7 @@ pub(crate) fn generate_svg_empty_state(username: &str) -> String {
     <g id="content-1">
       <g transform="translate(28, 10)">
         <!-- Circum Icons -->
-        <g fill="#1f2328" transform="translate(18, 0) scale(0.5)" opacity="0.2">
+        <g fill="var(--text)" transform="translate(18, 0) scale(0.5)" opacity="0.2">
           <g>
             <g>
               <path
@@ -141,7 +144,7 @@ pub(crate) fn generate_svg_empty_state(username: &str) -> String {
         <text
           y="15"
           x="24"
-          fill="#1f2328"
+          fill="var(--text)"
           opacity="0.3"
           style="font-size: 2.5px"
           text-anchor="middle"
@@ -151,7 +154,7 @@ pub(crate) fn generate_svg_empty_state(username: &str) -> String {
         <text
           x="24"
           y="18.6"
-          fill="#1f2328"
+          fill="var(--text)"
           opacity="0.3"
           style="font-size: 2.5px"
           text-anchor="middle"
@@ -164,6 +167,7 @@ pub(crate) fn generate_svg_empty_state(username: &str) -> String {
 </svg>
 "##,
         uppercase_first_letter(username),
+        get_theme(custom_theme),
         uppercase_first_letter(username),
         get_formatted_date_now()
     )

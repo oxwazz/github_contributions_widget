@@ -1,3 +1,4 @@
+use crate::generate_svg_error_state::get_theme;
 use crate::get_oss_contributions::PullRequest;
 use crate::utils::{
     get_formatted_date_now, get_photo_base64_from_url, parse_number_compact, parse_time_ago,
@@ -14,6 +15,7 @@ pub(crate) async fn generate_svg(
     contributions: Vec<PullRequest>,
     custom_title: Option<&str>,
     custom_show_max: Option<&str>,
+    custom_theme: Option<&str>,
 ) -> String {
     let total_contributions = get_show_max(&contributions, custom_show_max);
 
@@ -32,21 +34,21 @@ pub(crate) async fn generate_svg(
   <defs>
     <!-- STATES ICON -->
     <path
-      id="state-closed"
-      d="M3.25 1A2.25 2.25 0 0 1 4 5.372v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.251 2.251 0 0 1 3.25 1Zm9.5 5.5a.75.75 0 0 1 .75.75v3.378a2.251 2.251 0 1 1-1.5 0V7.25a.75.75 0 0 1 .75-.75Zm-2.03-5.273a.75.75 0 0 1 1.06 0l.97.97.97-.97a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.97.97.97.97a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-.97-.97-.97.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l.97-.97-.97-.97a.75.75 0 0 1 0-1.06zM2.5 3.25a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0zM3.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zm9.5 0a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5z"
-      fill="#d1242f"
-      transform="scale(0.32)"
-    />
-    <path
       id="state-open"
       d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354zM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0z"
-      fill="#1a7f37"
+      fill="var(--icon-open)"
       transform="scale(0.32)"
     />
     <path
       id="state-merged"
       d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zM5 3.25a.75.75 0 1 0 0 .005z"
-      fill="#8250df"
+      fill="var(--icon-merged)"
+      transform="scale(0.32)"
+    />
+    <path
+      id="state-closed"
+      d="M3.25 1A2.25 2.25 0 0 1 4 5.372v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.251 2.251 0 0 1 3.25 1Zm9.5 5.5a.75.75 0 0 1 .75.75v3.378a2.251 2.251 0 1 1-1.5 0V7.25a.75.75 0 0 1 .75-.75Zm-2.03-5.273a.75.75 0 0 1 1.06 0l.97.97.97-.97a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.97.97.97.97a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-.97-.97-.97.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l.97-.97-.97-.97a.75.75 0 0 1 0-1.06zM2.5 3.25a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0zM3.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zm9.5 0a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5z"
+      fill="var(--icon-closed)"
       transform="scale(0.32)"
     />
 
@@ -89,6 +91,8 @@ pub(crate) async fn generate_svg(
           font-style: normal;
           format("woff2");
       }}
+      
+      {}
 
       * {{
         font-family:"Noto Sans"
@@ -102,8 +106,8 @@ pub(crate) async fn generate_svg(
   <g>
     <path
       id="title-bg"
-      fill="#f6f8fa"
-      stroke="#d1d9e0"
+      fill="var(--wrapper-title-background)"
+      stroke="var(--wrapper-border)"
       stroke-width="0.2"
       stroke-linecap="square"
       d="M0 2 Q 0 0, 2 0 H 108 Q 110 0, 110 2 V 15 H 0 L 0 2"
@@ -112,13 +116,13 @@ pub(crate) async fn generate_svg(
       <text
         y="8"
         x="5"
-        fill="#1f2328"
+        fill="var(--text)"
         style="font-weight: 700; font-size: 3.8px"
         opacity="0.9"
       >
         {}
       </text>
-      <text y="12" x="5" fill="#1f2328" opacity="0.5" style="font-size: 2.2px">
+      <text y="12" x="5" fill="var(--text)" opacity="0.5" style="font-size: 2.2px">
         - Updated at {} -
       </text>
     </g>
@@ -130,6 +134,7 @@ pub(crate) async fn generate_svg(
         (total_contributions as f32 + 1.0) * DEFAULT_HEIGHT_WRAPPER,
         (total_contributions as f32 + 1.0) * DEFAULT_HEIGHT_WRAPPER,
         get_title(username, custom_title),
+        get_theme(custom_theme),
         get_animation(total_contributions as usize).await,
         get_title(username, custom_title),
         get_formatted_date_now(),
@@ -200,8 +205,8 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
   <g transform="translate(0, {})">
     <path
       id="content-{}-bg"
-      fill="#f6f8fa"
-      stroke="#d1d9e0"
+      fill="var(--wrapper-content-background)"
+      stroke="var(--wrapper-border)"
       stroke-width="0.2"
       stroke-linecap="square"
       d="M 0 0 H 110 V 15 H 0 L 0 0"
@@ -213,7 +218,7 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
         </g>
 
         <g transform="translate(14, 6)">
-          <circle cx="1.3" cy="-0.9" r="1.1" fill="#1f2328" opacity="0.1" />
+          <circle cx="1.3" cy="-0.9" r="1.1" fill="var(--text)" opacity="0.1" />
           <image
             x="0.15"
             y="-2.05"
@@ -225,7 +230,7 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
           <text
             y="0"
             x="3.1"
-            fill="#1f2328"
+            fill="var(--text)"
             opacity="0.7"
             style="font-size: 2.7px"
           >
@@ -234,7 +239,7 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
           <text
             y="4.6"
             x="0"
-            fill="#1f2328"
+            fill="var(--text)"
             opacity="0.7"
             style="font-size: 3.3px"
           >
@@ -246,7 +251,7 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
       <text
         y="8.5"
         x="105"
-        fill="#1f2328"
+        fill="var(--text)"
         opacity="0.7"
         style="font-size: 2.7px"
         text-anchor="end"
@@ -285,8 +290,8 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
   <g transform="translate(0, {})">
     <path
       id="content-{}-bg"
-      fill="#f6f8fa"
-      stroke="#d1d9e0"
+      fill="var(--wrapper-content-background)"
+      stroke="var(--wrapper-border)"
       stroke-width="0.2"
       stroke-linecap="square"
       d="M0 0 H 110 V 13 Q 110 15, 108 15 H 2 Q 0 15, 0 13  L 0 0"
@@ -298,7 +303,7 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
         </g>
 
         <g transform="translate(14, 6)">
-          <circle cx="1.3" cy="-0.9" r="1.1" fill="#1f2328" opacity="0.1" />
+          <circle cx="1.3" cy="-0.9" r="1.1" fill="var(--text)" opacity="0.1" />
           <image
             x="0.15"
             y="-2.05"
@@ -310,7 +315,7 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
           <text
             y="0"
             x="3.1"
-            fill="#1f2328"
+            fill="var(--text)"
             opacity="0.7"
             style="font-size: 2.7px"
           >
@@ -319,7 +324,7 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
           <text
             y="4.6"
             x="0"
-            fill="#1f2328"
+            fill="var(--text)"
             opacity="0.7"
             style="font-size: 3.3px"
           >
@@ -331,7 +336,7 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
       <text
         y="8.5"
         x="105"
-        fill="#1f2328"
+        fill="var(--text)"
         opacity="0.7"
         style="font-size: 2.7px"
         text-anchor="end"

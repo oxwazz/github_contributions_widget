@@ -11,8 +11,8 @@ use crate::get_oss_contributions::{get_oss_contributions, Data};
 use worker::{console_log, Context, Env, Request, Response, Result, Router};
 use worker_macros::event;
 
-fn return_error_state(username: &str) -> Result<Response> {
-    let svg = generate_svg_error_state(username);
+fn return_error_state(username: &str, custom_theme: Option<&str>) -> Result<Response> {
+    let svg = generate_svg_error_state(username, custom_theme);
     let mut response = Response::from_bytes(svg.as_bytes().to_vec())?;
     response
         .headers_mut()
@@ -20,8 +20,8 @@ fn return_error_state(username: &str) -> Result<Response> {
     Ok(response)
 }
 
-fn return_empty_state(username: &str) -> Result<Response> {
-    let svg = generate_svg_empty_state(username);
+fn return_empty_state(username: &str, custom_theme: Option<&str>) -> Result<Response> {
+    let svg = generate_svg_empty_state(username, custom_theme);
     let mut response = Response::from_bytes(svg.as_bytes().to_vec())?;
     response
         .headers_mut()
@@ -45,7 +45,7 @@ pub async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
                 "[OXWAZZ-ERR] Request failed: error get data GITHUB_TOKEN: {}",
                 err
             );
-            return return_error_state("<undefined>");
+            return return_error_state("<undefined>", None);
         }
         Ok(v) => v,
     };
@@ -75,7 +75,7 @@ pub async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
                 Err(err) => {
                     // error early return
                     console_log!("[OXWAZZ-ERR] Request failed: {}", err);
-                    return return_error_state("<undefined>");
+                    return return_error_state("<undefined>", None);
                 }
                 Ok(v) => v,
             };
@@ -128,7 +128,7 @@ pub async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
                 Err(err) => {
                     // error early return
                     console_log!("[OXWAZZ-ERR] Request failed: {}", err);
-                    return_error_state(username)
+                    return_error_state(username, query_theme.as_deref())
                 }
                 Ok(res) => {
                     // Check if the response was successful
@@ -140,14 +140,14 @@ pub async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
                                     "[OXWAZZ-ERR] Request failed: error get data json: {}",
                                     err
                                 );
-                                return return_error_state(username);
+                                return return_error_state(username, query_theme.as_deref());
                             }
                             Ok(v) => v,
                         };
 
                         // early return if user doesn't have contributions
                         if res.data.user.pullRequests.nodes.len().le(&0) {
-                            return return_empty_state(username);
+                            return return_empty_state(username, query_theme.as_deref());
                         }
 
                         let svg = generate_svg(
@@ -155,11 +155,12 @@ pub async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
                             res.data.user.pullRequests.nodes,
                             query_title.as_deref(),
                             query_show_max.as_deref(),
+                            query_theme.as_deref(),
                         )
                         .await;
                         // early return generate_svg has error inside / return empty string
                         if svg.is_empty() {
-                            return return_empty_state(username);
+                            return return_empty_state(username, query_theme.as_deref());
                         }
                         let mut response = Response::from_bytes(svg.as_bytes().to_vec())?;
                         response
@@ -173,7 +174,7 @@ pub async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
 
                         // error early return
                         console_log!("[OXWAZZ-ERR] Request failed: {} {:?}", status, error_body);
-                        return_error_state(username)
+                        return_error_state(username, query_theme.as_deref())
                     }
                 }
             }
