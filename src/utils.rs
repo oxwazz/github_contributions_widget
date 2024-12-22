@@ -44,7 +44,7 @@ pub(crate) fn parse_number_compact(number: i32) -> String {
     format!("{}{}{}", sign, formatted, suffixes[index])
 }
 
-pub(crate) async fn get_photo_base64_from_url(image_url: &str) -> String {
+pub(crate) async fn convert_photo_from_url_to_base64(image_url: &str) -> String {
     let response = match reqwest::get(image_url).await {
         Err(_) => return String::new(),
         Ok(v) => v,

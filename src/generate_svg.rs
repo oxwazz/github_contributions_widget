@@ -1,7 +1,7 @@
 use crate::generate_svg_error_state::get_theme;
 use crate::get_oss_contributions::PullRequest;
 use crate::utils::{
-    get_formatted_date_now, get_photo_base64_from_url, parse_number_compact, parse_time_ago,
+    convert_photo_from_url_to_base64, get_formatted_date_now, parse_number_compact, parse_time_ago,
     uppercase_first_letter,
 };
 use worker::console_log;
@@ -266,7 +266,8 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
             count + 1,
             count + 1,
             contribution.state.to_lowercase(),
-            get_photo_base64_from_url(contribution.repository.owner.avatarUrl.as_str()).await,
+            convert_photo_from_url_to_base64(contribution.repository.owner.avatarUrl.as_str())
+                .await,
             contribution.repository.nameWithOwner, // owner and project owner
             parse_number_compact(contribution.repository.stargazerCount), // project stargazers
             html_escape::encode_text(&contribution.title), // PR Title
@@ -351,7 +352,8 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
             count + 1,
             count + 1,
             contribution.state.to_lowercase(),
-            get_photo_base64_from_url(contribution.repository.owner.avatarUrl.as_str()).await,
+            convert_photo_from_url_to_base64(contribution.repository.owner.avatarUrl.as_str())
+                .await,
             contribution.repository.nameWithOwner, // owner and project owner
             parse_number_compact(contribution.repository.stargazerCount), // project stargazers
             html_escape::encode_text(&contribution.title), // PR Title
