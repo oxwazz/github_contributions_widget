@@ -6,7 +6,7 @@ permissions:
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - 'v*'
   workflow_dispatch:
 
 jobs:
@@ -26,4 +26,4 @@ jobs:
       - run: npx changelogithub # or changelogithub@0.12 if ensure the stable result
         continue-on-error: true
         env:
-          GITHUB_TOKEN: ${{secrets.PAT}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
