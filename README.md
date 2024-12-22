@@ -26,7 +26,7 @@ Easily showcase your GitHub contributions to your profile! Follow the steps belo
 ```
 
 **Output** <br/>
-![GitHub Contributions Widget](./assets/snapshot/v0.1.1.svg)
+![GitHub Contributions Widget](./assets/snapshot/v0.1.3.svg)
 
 Congratulation! 🎉 You are now showing your GitHub contributions to your profile!
 
