@@ -262,7 +262,7 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
   </g>
             "##,
             count + 1,
-            (count as f32 + 1.0) * DEFAULT_RANGE_POSITION_NEXT_ITEM, // tes
+            (count as f32 + 1.0) * DEFAULT_RANGE_POSITION_NEXT_ITEM,
             count + 1,
             count + 1,
             contribution.state.to_lowercase(),
@@ -348,7 +348,7 @@ async fn get_content(contributions: Vec<PullRequest>, total_contributions: usize
   </g>
             "##,
             count + 1,
-            (count as f32 + 1.0) * DEFAULT_RANGE_POSITION_NEXT_ITEM, // tes
+            (count as f32 + 1.0) * DEFAULT_RANGE_POSITION_NEXT_ITEM,
             count + 1,
             count + 1,
             contribution.state.to_lowercase(),
