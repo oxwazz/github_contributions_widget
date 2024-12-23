@@ -16,10 +16,6 @@ Easily showcase your GitHub contributions to your profile! Follow the steps belo
 
 1. Copy the code snippet below and paste it into your `README.md` file.
 1. Replace `/oxwazz` with your GitHub username (case-insensitive).
-1. [Optional] To filter by PR status Add `?states="STATUS"` change status with `MERGED | OPEN | CLOSED`.
-1. [Optional] Custom title add `?title=` to customize the widget title.
-1. [Optional] Custom total showing contribution add `?show-max=`, min=1 max=10.
-1. [Optional] Custom theme add `?theme=`, with `light | dark`.
 
 ```markdown
 ![GitHub Contributions Widget](https://github-contributions-widget.oxwazz.com/oxwazz)
@@ -29,6 +25,19 @@ Easily showcase your GitHub contributions to your profile! Follow the steps belo
 ![GitHub Contributions Widget](./assets/snapshot/v0.1.3.svg)
 
 Congratulation! 🎉 You are now showing your GitHub contributions to your profile!
+
+### Optional Query Params
+
+You can use additional params for customize your needs.
+
+| Description                       | Query Params | Default Value | Possible Value                 |
+|-----------------------------------|--------------|---------------|--------------------------------|
+| filter by PR states               | ?states=     | -             | "MERGED" \| "OPEN" \| "CLOSED" |
+| Custom widget title               | ?title=      | -             | string                         |
+| Custom showing total contribution | ?show-max=   | 3             | number (min=1 max=10)          |
+| Custom theme                      | ?theme=      | light         | "light" \| "dark"              |
+
+and you can combine all the query params. 💪
 
 ## FAQ
 
