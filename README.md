@@ -75,6 +75,10 @@ showcase your commitment to open source and personal projects, enhancing your pr
 📐 This code is deployed on a [Cloudflare worker](https://developers.cloudflare.com/workers/languages/rust/). As we are
 utilizing the free tier, there
 are [certain limitations](https://developers.cloudflare.com/workers/platform/limits/#worker-limits) associated with it.
+Additionally, it interacts with the [GitHub API](https://docs.github.com/en/graphql/overview/about-the-graphql-api),
+which also
+has [usage limits](https://docs.github.com/en/graphql/overview/rate-limits-and-node-limits-for-the-graphql-api#node-limit)
+in place.
 
 ## Contributing
 
