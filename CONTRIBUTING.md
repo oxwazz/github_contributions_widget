@@ -16,8 +16,8 @@ a positive experience for contributors and maintainers.**
 
 🪜 Before you start contributing you must clone and installing this project on your local machine.
 
-> Prerequisite: you must install [rust](https://www.rust-lang.org/tools/install)
-> and [node](https://nodejs.org/en/download/package-manager/current) on your machine first
+> Prerequisite: you must install [rust](https://www.rust-lang.org/tools/install) v1.56+
+> and [node](https://nodejs.org/en/download/package-manager/current) v20+ on your machine first
 
 1. Clone the project
 
