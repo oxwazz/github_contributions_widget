@@ -1,11 +1,8 @@
 # GitHub Contributions Widget
 
 [badge-workflow]: https://img.shields.io/github/actions/workflow/status/oxwazz/cors-bypass/release.yml
-
 [link-workflow]: https://github.com/oxwazz/github_contributions_widget/actions/workflows/release.yml
-
 [badge-twitter]: https://img.shields.io/twitter/follow/oxwazz
-
 [link-twitter]: https://x.com/oxwazz
 
 [![badge-workflow]][link-workflow]
@@ -16,7 +13,7 @@
 ### Contents
 
 - [Usage](#usage)
-    - [Optional Query Params](#optional-query-params)
+  - [Optional Query Params](#optional-query-params)
 - [FAQ](#faq)
 - [Why](#why)
 - [Limitation](#limitation)

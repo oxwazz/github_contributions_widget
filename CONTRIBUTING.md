@@ -49,8 +49,7 @@ done 🎉
 
 ## :thread: How it works
 
-This code is deployed on [Cloudflare worker](https://developers.cloudflare.com/workers/languages/rust/). The main
-entry
+This code is deployed on [Cloudflare worker](https://developers.cloudflare.com/workers/languages/rust/). The main entry
 script is lib.rs. It makes a request to the [GitHub API](https://docs.github.com/en/graphql/overview/explorer),
 and create svg based on the responses.
 
