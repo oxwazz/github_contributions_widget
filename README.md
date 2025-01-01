@@ -69,9 +69,9 @@ and you can combine all the query params. 💪
 > You can implement a widget that changes its theme depending on the browser's mode using the <picture> element.
 > ```markdown
 > <picture>
->  <source media="(prefers-color-scheme: dark)" srcset="https://github-contributions-widget.oxwazz.com/oxwazz?theme=dark">
->  <source media="(prefers-color-scheme: light)" srcset="https://github-contributions-widget.oxwazz.com/oxwazz">
->  <img alt="show widget theme based on browser light or dark mode." src="https://github-contributions-widget.oxwazz.com/oxwazz">
+>   <source media="(prefers-color-scheme: dark)" srcset="https://github-contributions-widget.oxwazz.com/oxwazz?theme=dark">
+>   <source media="(prefers-color-scheme: light)" srcset="https://github-contributions-widget.oxwazz.com/oxwazz">
+>   <img alt="show widget theme based on browser light or dark mode." src="https://github-contributions-widget.oxwazz.com/oxwazz">
 > </picture>
 > ```
 
