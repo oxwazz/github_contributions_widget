@@ -1,8 +1,11 @@
 # GitHub Contributions Widget
 
-[badge-workflow]: https://img.shields.io/github/actions/workflow/status/oxwazz/cors-bypass/release.yml
+[badge-workflow]: https://img.shields.io/github/actions/workflow/status/oxwazz/github_contributions_widget/release.yml
+
 [link-workflow]: https://github.com/oxwazz/github_contributions_widget/actions/workflows/release.yml
+
 [badge-twitter]: https://img.shields.io/twitter/follow/oxwazz
+
 [link-twitter]: https://x.com/oxwazz
 
 [![badge-workflow]][link-workflow]
@@ -13,7 +16,7 @@
 ### Contents
 
 - [Usage](#usage)
-  - [Optional Query Params](#optional-query-params)
+    - [Optional Query Params](#optional-query-params)
 - [FAQ](#faq)
 - [Why](#why)
 - [Limitation](#limitation)
@@ -62,7 +65,8 @@ and you can combine all the query params. 💪
 
 **2. can we use a widget theme based on the browser's light or dark mode?**
 
-> Yes, [GitHub markdown has support for light and dark mode images](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#specifying-the-theme-an-image-is-shown-to).
+>
+Yes, [GitHub markdown has support for light and dark mode images](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#specifying-the-theme-an-image-is-shown-to).
 > You can implement a widget that changes its theme depending on the browser's mode using the <picture> element.
 > ```markdown
 > <picture>
@@ -75,15 +79,18 @@ and you can combine all the query params. 💪
 ## Why
 
 🖌️ We create this widget to effortlessly display your GitHub contributions on your profile, highlighting your coding
-activity and accomplishments to potential collaborators, employers, or your community. It provides a visually appealing 
+activity and accomplishments to potential collaborators, employers, or your community. It provides a visually appealing
 way to showcase your commitment to open source and personal projects, enhancing your professional presence.
 
 ## Limitation
 
 📐 This code is deployed on a [Cloudflare worker](https://developers.cloudflare.com/workers/languages/rust/). As we are
-utilizing the free tier, there are [certain limitations](https://developers.cloudflare.com/workers/platform/limits/#worker-limits) 
-associated with it. Additionally, it interacts with the [GitHub API](https://docs.github.com/en/graphql/overview/about-the-graphql-api),
-which also has [usage limits](https://docs.github.com/en/graphql/overview/rate-limits-and-node-limits-for-the-graphql-api#node-limit)
+utilizing the free tier, there
+are [certain limitations](https://developers.cloudflare.com/workers/platform/limits/#worker-limits)
+associated with it. Additionally, it interacts with
+the [GitHub API](https://docs.github.com/en/graphql/overview/about-the-graphql-api),
+which also
+has [usage limits](https://docs.github.com/en/graphql/overview/rate-limits-and-node-limits-for-the-graphql-api#node-limit)
 in place.
 
 ## Contributing
@@ -93,7 +100,8 @@ in place.
 
 ## Credit
 
-📌 GitHub Contributions Widget is currently being developed and maintained by [Muhammad Rahmahalim](https://github.com/oxwazz).<br>
+📌 GitHub Contributions Widget is currently being developed and maintained
+by [Muhammad Rahmahalim](https://github.com/oxwazz).<br>
 This project is inspired by [LeetCode-Stats-Card](https://github.com/JacobLinCool/LeetCode-Stats-Card), but focuses on
 showcasing GitHub open-source contributions instead of LeetCode progress. Thank you!
 
