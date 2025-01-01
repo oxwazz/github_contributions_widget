@@ -14,7 +14,7 @@ a positive experience for contributors and maintainers.**
 
 ## :books: Install
 
-🪜 Before you start contributing you must clone and installing this project on your local machine.
+Before you start contributing you must clone and installing this project on your local machine.
 
 > Prerequisite: you must install [rust](https://www.rust-lang.org/tools/install) v1.56+
 > and [node](https://nodejs.org/en/download/package-manager/current) v20+ on your machine first
@@ -49,14 +49,14 @@ done 🎉
 
 ## :thread: How it works
 
-🕯️ This code is deployed on [Cloudflare worker](https://developers.cloudflare.com/workers/languages/rust/). The main
+🕯This code is deployed on [Cloudflare worker](https://developers.cloudflare.com/workers/languages/rust/). The main
 entry
 script is lib.rs. It makes a request to the [GitHub API](https://docs.github.com/en/graphql/overview/explorer),
 and create svg based on the responses.
 
 ## :wrench: Tools
 
-⚒️ While working this project I'm usually using this tools, like:
+While working this project I'm usually using this tools, like:
 
 1. https://yqnn.github.io/svg-path-editor - create svg path
 1. https://cloudconvert.com/ttf-to-woff2 - convert font .ttf format to .woff2
