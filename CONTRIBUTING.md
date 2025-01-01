@@ -4,14 +4,15 @@
 
 ### Contents
 
-- [Install Locally](#books-install-locally)
-- [Another Tools](#wrench-another-tools)
+- [Install](#books-install)
+- [How it Works](#thread-how-it-works)
+- [Tools](#wrench-tools)
 
 > **This guide serves to set clear expectations for everyone involved with the project so that we can improve it
 together while also creating a welcoming space for everyone to participate. Following these guidelines will help ensure
 a positive experience for contributors and maintainers.**
 
-## :books: Install Locally
+## :books: Install
 
 Before you start contributing you must clone and installing this project on your local machine.
 
@@ -35,7 +36,7 @@ git clone https://github.com/oxwazz/github_contributions_widget.git
 GITHUB_TOKEN = "" # <- replace this empty string with yout GitHub token
 ```
 
-3. Open project and then run the project
+3. Open and run
 
 ```sh
 # opening project
@@ -46,9 +47,15 @@ npx wrangler dev
 
 done 🎉
 
-## :wrench: Another Tools
+## :thread: How it works
 
-While working this project i usually using this tools, like:
+This code is deployed on [Cloudflare worker](https://developers.cloudflare.com/workers/languages/rust/). The main entry
+script is lib.rs. It makes a request to the [GitHub API](https://docs.github.com/en/graphql/overview/explorer),
+and create svg based on the responses.
+
+## :wrench: Tools
+
+While working this project I'm usually using this tools, like:
 
 1. https://yqnn.github.io/svg-path-editor/ - create svg path
 1. https://cloudconvert.com/ttf-to-woff2 - convert font .ttf format to .woff2

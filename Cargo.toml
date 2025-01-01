@@ -1,8 +1,13 @@
 [package]
 name = "github_contributions_widget"
 version = "0.1.7"
+description = "Showcase your github open-source contributions dynamically!"
+repository = "https://github.com/oxwazz/github_contributions_widget"
+license = "MIT"
+homepage = "https://github.com/oxwazz/github_contributions_widget"
+authors = ["Muhammad Rahmahalim <muhammad.rahmahalim@gmail.com>"]
 edition = "2021"
-authors = ["oxwazz <muhammad.rahmahalim@gmail.com>"]
+keywords = ["github", "profile", "showcase", "stats", "dynamically"]
 
 [package.metadata.release]
 release = false
