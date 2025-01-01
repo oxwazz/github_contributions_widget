@@ -102,4 +102,4 @@ showcasing GitHub open-source contributions instead of LeetCode progress. Thank 
 
 ## License
 
-[MIT](./LICENSE) License © 2024-PRESENT [Muhammad Rahmahalim](https://github.com/oxwazz)
+[MIT](./LICENSE) License © 2024 [Muhammad Rahmahalim](https://github.com/oxwazz)
