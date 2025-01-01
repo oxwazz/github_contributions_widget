@@ -1,6 +1,6 @@
 # Contributing Guidelines
 
-🪝 *Pull requests, bug reports, and all other forms of contribution are welcomed and highly encouraged!* :octocat:
+*Pull requests, bug reports, and all other forms of contribution are welcomed and highly encouraged!* :octocat:
 
 > **This guide serves to set clear expectations for everyone involved with the project so that we can improve it
 together while also creating a welcoming space for everyone to participate. Following these guidelines will help ensure
