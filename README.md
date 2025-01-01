@@ -55,7 +55,7 @@ and you can combine all the query params. 💪
 
 ## FAQ
 
-**1. why the widget is not updating? that causing my latest contributions not listed**
+**1. why is my widget not updating, causing my latest contributions not to be listed?**
 
 > GitHub has image caching by default, this causing your latest contributions not reflect on this widget.
 > to solve this issue you can manually update the image using query params like `?refresh-cache=1`
@@ -63,21 +63,30 @@ and you can combine all the query params. 💪
 > with [probablykasper/readme-template-action](https://github.com/probablykasper/readme-template-action),
 > you can [see the example](https://github.com/oxwazz/oxwazz) in my repository.
 
+**2. can we use a widget theme based on the browser's light or dark mode?**
+
+> Yes, [GitHub markdown has support for light and dark mode images](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#specifying-the-theme-an-image-is-shown-to).
+> You can implement a widget that changes its theme depending on the browser's mode using the <picture> element.
+> ```markdown
+> <picture>
+>  <source media="(prefers-color-scheme: dark)" srcset="https://github-contributions-widget.oxwazz.com/oxwazz?theme=dark">
+>  <source media="(prefers-color-scheme: light)" srcset="https://github-contributions-widget.oxwazz.com/oxwazz">
+>  <img alt="show widget theme based on browser light or dark mode." src="https://github-contributions-widget.oxwazz.com/oxwazz">
+> </picture>
+> ```
+
 ## Why
 
 🖌️ We create this widget to effortlessly display your GitHub contributions on your profile, highlighting your coding
-activity
-and accomplishments to potential collaborators, employers, or your community. It provides a visually appealing way to
-showcase your commitment to open source and personal projects, enhancing your professional presence.
+activity and accomplishments to potential collaborators, employers, or your community. It provides a visually appealing 
+way to showcase your commitment to open source and personal projects, enhancing your professional presence.
 
 ## Limitation
 
 📐 This code is deployed on a [Cloudflare worker](https://developers.cloudflare.com/workers/languages/rust/). As we are
-utilizing the free tier, there
-are [certain limitations](https://developers.cloudflare.com/workers/platform/limits/#worker-limits) associated with it.
-Additionally, it interacts with the [GitHub API](https://docs.github.com/en/graphql/overview/about-the-graphql-api),
-which also
-has [usage limits](https://docs.github.com/en/graphql/overview/rate-limits-and-node-limits-for-the-graphql-api#node-limit)
+utilizing the free tier, there are [certain limitations](https://developers.cloudflare.com/workers/platform/limits/#worker-limits) 
+associated with it. Additionally, it interacts with the [GitHub API](https://docs.github.com/en/graphql/overview/about-the-graphql-api),
+which also has [usage limits](https://docs.github.com/en/graphql/overview/rate-limits-and-node-limits-for-the-graphql-api#node-limit)
 in place.
 
 ## Contributing
@@ -87,11 +96,9 @@ in place.
 
 ## Credit
 
-📌 GitHub Contributions Widget is currently being developed and maintained
-by [Muhammad Rahmahalim](https://github.com/oxwazz).<br>
+📌 GitHub Contributions Widget is currently being developed and maintained by [Muhammad Rahmahalim](https://github.com/oxwazz).<br>
 This project is inspired by [LeetCode-Stats-Card](https://github.com/JacobLinCool/LeetCode-Stats-Card), but focuses on
-showcasing GitHub open-source contributions instead of LeetCode
-progress. Thank you!
+showcasing GitHub open-source contributions instead of LeetCode progress. Thank you!
 
 ## License
 
