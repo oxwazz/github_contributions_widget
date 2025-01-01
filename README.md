@@ -26,7 +26,7 @@
 
 ## Usage
 
-Easily showcase your GitHub contributions to your profile! Follow the steps below:
+🎩 Easily showcase your GitHub contributions to your profile! Follow the steps below:
 
 1. Copy the code snippet below and paste it into your `README.md` file.
 1. Replace `/oxwazz` with your GitHub username (case-insensitive).
@@ -42,14 +42,14 @@ Congratulation! 🎉 You are now showing your GitHub contributions to your profi
 
 ### Optional Query Params
 
-You can use additional params for customize your needs.
+🧪 You can use additional params for customize your needs.
 
 | Description                       | Query Params | Default Value | Possible Value                 |
 |-----------------------------------|--------------|---------------|--------------------------------|
 | filter by PR states               | ?states=     | -             | "MERGED" \| "OPEN" \| "CLOSED" |
-| Custom widget title               | ?title=      | -             | string                         |
-| Custom showing total contribution | ?show-max=   | 3             | number (min=1 max=10)          |
-| Custom theme                      | ?theme=      | light         | "light" \| "dark"              |
+| custom widget title               | ?title=      | -             | string                         |
+| custom showing total contribution | ?show-max=   | 3             | number (min=1 max=10)          |
+| custom theme                      | ?theme=      | light         | "light" \| "dark"              |
 
 and you can combine all the query params. 💪
 
@@ -65,14 +65,14 @@ and you can combine all the query params. 💪
 
 ## Why
 
-We create this widget to effortlessly display your GitHub contributions on your profile, highlighting your coding
+🖌️ We create this widget to effortlessly display your GitHub contributions on your profile, highlighting your coding
 activity
 and accomplishments to potential collaborators, employers, or your community. It provides a visually appealing way to
 showcase your commitment to open source and personal projects, enhancing your professional presence.
 
 ## Limitation
 
-This code is deployed on a [Cloudflare worker](https://developers.cloudflare.com/workers/languages/rust/). As we are
+📐 This code is deployed on a [Cloudflare worker](https://developers.cloudflare.com/workers/languages/rust/). As we are
 utilizing the free tier, there
 are [certain limitations](https://developers.cloudflare.com/workers/platform/limits/#worker-limits) associated with it.
 
@@ -83,7 +83,7 @@ are [certain limitations](https://developers.cloudflare.com/workers/platform/lim
 
 ## Credit
 
-"GitHub Contributions Widget" is currently being developed and maintained
+📌 GitHub Contributions Widget is currently being developed and maintained
 by [Muhammad Rahmahalim](https://github.com/oxwazz).<br>
 This project is inspired by [LeetCode-Stats-Card](https://github.com/JacobLinCool/LeetCode-Stats-Card), but focuses on
 showcasing GitHub open-source contributions instead of LeetCode

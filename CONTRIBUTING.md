@@ -1,6 +1,6 @@
 # Contributing Guidelines
 
-*Pull requests, bug reports, and all other forms of contribution are welcomed and highly encouraged!* :octocat:
+🪝 *Pull requests, bug reports, and all other forms of contribution are welcomed and highly encouraged!* :octocat:
 
 ### Contents
 
@@ -14,7 +14,7 @@ a positive experience for contributors and maintainers.**
 
 ## :books: Install
 
-Before you start contributing you must clone and installing this project on your local machine.
+🪜 Before you start contributing you must clone and installing this project on your local machine.
 
 > Prerequisite: you must install [rust](https://www.rust-lang.org/tools/install)
 > and [node](https://nodejs.org/en/download/package-manager/current) on your machine first
@@ -49,15 +49,16 @@ done 🎉
 
 ## :thread: How it works
 
-This code is deployed on [Cloudflare worker](https://developers.cloudflare.com/workers/languages/rust/). The main entry
+🕯️ This code is deployed on [Cloudflare worker](https://developers.cloudflare.com/workers/languages/rust/). The main
+entry
 script is lib.rs. It makes a request to the [GitHub API](https://docs.github.com/en/graphql/overview/explorer),
 and create svg based on the responses.
 
 ## :wrench: Tools
 
-While working this project I'm usually using this tools, like:
+⚒️ While working this project I'm usually using this tools, like:
 
-1. https://yqnn.github.io/svg-path-editor/ - create svg path
+1. https://yqnn.github.io/svg-path-editor - create svg path
 1. https://cloudconvert.com/ttf-to-woff2 - convert font .ttf format to .woff2
-1. https://www.giftofspeed.com/base64-encoder/ - convert font .woff2 format to base64
+1. https://www.giftofspeed.com/base64-encoder - convert font .woff2 format to base64
 1. https://inkscape.org/release - create wireframe
