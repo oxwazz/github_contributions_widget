@@ -67,7 +67,7 @@ and you can combine all the query params. 💪
 
 >
 Yes, [GitHub markdown has support for light and dark mode images](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#specifying-the-theme-an-image-is-shown-to).
-> You can implement a widget that changes its theme depending on the browser's mode using the <picture> element.
+> You can implement a widget that changes its theme depending on the browser's mode using the \<picture\> element.
 > ```markdown
 > <picture>
 >   <source media="(prefers-color-scheme: dark)" srcset="https://github-contributions-widget.oxwazz.com/oxwazz?theme=dark">
