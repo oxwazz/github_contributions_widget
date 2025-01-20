@@ -1,0 +1,11 @@
+[tools]
+node = "22.13.0"
+rust = "1.84.0"
+
+[tasks.dev]
+description = "Run wrangler dev"
+run = "npx wrangler dev"
+
+[tasks.deploy]
+description = "Run wrangler deploy"
+run = "npx wrangler deploy"
